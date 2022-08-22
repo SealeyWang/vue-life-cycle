@@ -27,15 +27,38 @@
       <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
       <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
     </ul>
+
+    <keep-alive>
+      <Parent v-if="this.show === true" />
+    </keep-alive>
+    {{ this.show }}
+    <button @click="toggle">toggle</button>
   </div>
 </template>
 
 <script>
+import Parent from "./Parent";
+
 export default {
   name: 'HelloWorld',
   props: {
     msg: String
-  }
+  },
+  components: {
+    Parent,
+  },
+  data: function () {
+    return {
+      show: true,
+      a: 1,
+    };
+  },
+  methods: {
+    toggle() {
+      console.log(this.show);
+      this.show = !this.show;
+    },
+  },
 }
 </script>
 
